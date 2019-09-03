@@ -18,4 +18,14 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('warehouse/'),                         # cały magazyn
+    # path('warehouse/category/<int:id>'),        # wyświetanie wszystkch produktów danej kategorii
+    # path('product/<int:id>'),                   # info o danym produkcje
+    # path('sales/'),                             # wszystkie sprzedaże
+    # path('sales/<int:id>'),                     # szczegoły dostawy
+    # path('delivery/'),                          # wszystkie dostawy
+    # path('delivery/<int:id>'),                  # szczegóły dostawy
+    # path('contractor/'),                        # klienci/kontrahenci
+    # path('contractor/<int:id>')                 # szczegóły kontahentów
+
 ]
