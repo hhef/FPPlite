@@ -15,15 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from FPP.views import CreateCategoryView, EditCategoryView, ContractorsCreate, EditContractorView, ProductCreatorView
+from FPP.views import CreateCategoryView, EditCategoryView, ContractorsCreate, EditContractorView, ProductCreatorView, \
+    EditProductCreatorView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('category/', CreateCategoryView.as_view()),
     path('category/<int:id>', EditCategoryView.as_view()),
-    path('products/', ProductCreatorView.as_view()),                         # cały magazyn
+    path('products/', ProductCreatorView.as_view()),
     # path('warehouse/category/<int:id>'),        # wyświetanie wszystkch produktów danej kategorii
-    # path('product/<int:id>'),                   # info o danym produkcje
+    path('products/<int:id>', EditProductCreatorView.as_view()),                   # info o danym produkcje
     # path('sales/'),                             # wszystkie sprzedaże
     # path('sales/<int:id>'),                     # szczegoły dostawy
     # path('delivery/'),                          # wszystkie dostawy

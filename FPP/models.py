@@ -25,6 +25,10 @@ class Product(models.Model):
     description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
 
+    @property
+    def last_price(self):
+        return self.price_for_sale.last()
+
 
 class OrderDetail(models.Model):
     product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
@@ -50,3 +54,7 @@ class Contractor(models.Model):
 class ProductHistory(models.Model):
     price_for_sale = models.FloatField()
     purchase_price = models.FloatField()
+
+
+# Można zrobić cenę w produkcie stałą, i z historii ceny foreign key do ceny aktualnej. Jeżeli cena aktualnie jest różna
+# się updateuje, a jeżeli nie to zostaje. Przy dostawie cena zostanie wrzucona do historii cen
