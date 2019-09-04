@@ -5,6 +5,10 @@ from django.http import HttpResponseRedirect
 from FPP.models import Category, Contractor, Product, ProductHistory
 
 
+class LandingPageView(View):
+    def get(self, request):
+        return render(request, "landing_page.html")
+
 class CreateCategoryView(View):
     def get(self, request):
         category = Category.objects.all()
