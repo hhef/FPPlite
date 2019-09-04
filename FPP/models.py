@@ -14,6 +14,8 @@ CONTRACTORTYPE = (
 class Category(models.Model):
     category = models.CharField(max_length=64, unique=True)
 
+    def __str__(self):
+        return self.category
 
 class Product(models.Model):
     code = models.CharField(max_length=12)
