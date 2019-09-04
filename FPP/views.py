@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from FPP.forms import CategoryForm, EditCategoryForm, ContractorForm
+from FPP.forms import CategoryForm, ContractorForm
 from django.http import HttpResponseRedirect
 from FPP.models import Category, Contractor
 
@@ -23,15 +23,14 @@ class CreateCategoryView(View):
 
 class EditCategoryView(View):
     def get(self, request, id):
-        form = EditCategoryForm()
+        form = CategoryForm()
         return render(request, "edit_category.html", {"form":form})
 
     def post(self,request, id):
-        form = EditCategoryForm(request.POST)
+        form = CategoryForm(request.POST)
         if form.is_valid():
-            new_name = form.cleaned_data['category']
             cat = Category.objects.get(pk=id)
-            cat.category = new_name
+            cat.category = form.cleaned_data['category']
             cat.save()
             return HttpResponseRedirect("/category")
         else:
