@@ -1,0 +1,10 @@
+Istniejące kategorie:<br>
+{% for cat in category %}
+    <a href="/category/{{ cat.id }}">{{ cat.category }}</a><br>
+{% endfor %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Stwórz">
+</form>

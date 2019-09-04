@@ -1,0 +1,15 @@
+<style> td, th, caption { border: 1px solid black; } </style>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Stwórz">
+</form>
+<table style="width:50%">
+    <caption>Kontrahenci</caption>
+        <tr>
+            <th>Nazwa</th><th>Kontakt</th><th>Typ</th><th>Dług</th>
+        </tr>
+        <tr>{% for cont in contractors %}
+            <td><a href="/contractor/{{ cont.id }}">{{ cont.name }}</a></td><td>{{ cont.contact }}</td><td>{{ cont.get_type_display }}</td><td>{{ cont.debt }}zł</td>
+        </tr>{% endfor %}
+</table>
