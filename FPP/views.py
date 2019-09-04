@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views import View
-from FPP.forms import CategoryForm, ContractorForm
+from FPP.forms import CategoryForm, ContractorForm, ProductsForm
 from django.http import HttpResponseRedirect
-from FPP.models import Category, Contractor
+from FPP.models import Category, Contractor, Product
 
 
 class CreateCategoryView(View):
@@ -54,6 +54,7 @@ class ContractorsCreate(View):
             return render(request, "contractors.html", {"form": form,
                                                         "contractors": contractors})
 
+
 class EditContractorView(View):
     def get(self, request, id):
         form = ContractorForm()
@@ -71,3 +72,21 @@ class EditContractorView(View):
             return HttpResponseRedirect("/contractors")
         else:
             return render(request, "edit_contractor.html", {"form": form})
+
+
+class ProductCreatorView(View):
+    def get(self, request):
+        products = Product.objects.order_by('name')
+        form = ProductsForm()
+        return render(request, "warehouse.html", {"form":form,
+                                                    "products":products})
+
+    def post(self, request):
+        products = Product.objects.order_by('name')
+        form = ProductsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/products")
+        else:
+            return render(request, "warehouse.html", {"form": form,
+                                                        "products": products})
