@@ -6,6 +6,7 @@ FPP/migrations/
 FPPlite/__init__.py
 FPPlite/__pycache__/
 FPP/__pycache__/
+FPPlite/settings.py
 
 # User-specific stuff
 .idea/**/workspace.xml
