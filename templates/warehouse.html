@@ -9,7 +9,10 @@
             <td>{{ prod.description }}</td><td>{{ prod.last_price.price_for_sale }} zł</td><td>{{ prod.quantity }}</td>
         </tr>{% endfor %}
 </table>
-
+<a href="/addproduct" style="font-size: 20px;">Dodaj produkt</a><br>
+<br>
+<a href="/"style="font-size: 20px;">Powrót</a><br>
+<br>
         {% if products.has_other_pages %}
             {% if products.has_previous %}
                 <a href="?page={{ products.previous_page_number }}">< poprzednia</a>

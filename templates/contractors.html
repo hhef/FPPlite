@@ -1,9 +1,11 @@
 <style> td, th, caption { border: 1px solid black; } </style>
+<span style="font-size:100px;">Dodaj Kontrahenta</span><br>
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Stwórz">
 </form>
+<span style="font-size:100px;">Lista Kontrahentów</span><br>
 <table style="width:50%">
     <caption>Kontrahenci</caption>
         <tr>
@@ -13,6 +15,7 @@
             <td><a href="/contractor/{{ cont.id }}">{{ cont.name }}</a></td><td>{{ cont.contact }}</td><td>{{ cont.get_type_display }}</td><td>{{ cont.debt }}zł</td>
         </tr>{% endfor %}
 </table>
+<a href="/" style="font-size: 20px;">Powrót</a><br>
         {% if contractors.has_other_pages %}
             {% if contractors.has_previous %}
                 <a href="?page={{ contractors.previous_page_number }}">< poprzednia</a>

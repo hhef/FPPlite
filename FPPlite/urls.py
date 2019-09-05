@@ -25,7 +25,6 @@ urlpatterns = [
     path('category/<int:id>', EditCategoryView.as_view()),
     path('addproduct/', ProductCreatorView.as_view()),
     path('warehouse/', WarehouseView.as_view()),
-    # path('warehouse/category/<int:id>'),        # wyświetanie wszystkch produktów danej kategorii
     path('products/<int:id>', EditProductCreatorView.as_view()),
     path('sale/', SaleView.as_view()),
     # path('sale/<int:id>'),                      # szczegoły dostawy
