@@ -34,7 +34,7 @@ class WarehouseView(View):
 
 class CreateCategoryView(View):
     def get(self, request):
-        category = Category.objects.all()
+        category = Category.objects.order_by('category')
         form = CategoryForm()
         return render(request, "category.html", {"form":form,
                                                  "category":category})

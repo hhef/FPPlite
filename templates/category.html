@@ -1,6 +1,6 @@
 <span style="font-size: 30px"> Istniejące kategorie:</span><br>
 {% for cat in category %}
-    <a href="/category/{{ cat.id }}">{{ cat.category }}</a><br>
+    <li><a href="/category/{{ cat.id }}">{{ cat.category }}</a><br></li>
 {% endfor %}
 <span style="font-size: 30px"> Dodaj kategorie:</span><br>
 <form method="POST">

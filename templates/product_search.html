@@ -1,5 +1,26 @@
-<style> td, th, caption { border: 1px solid black; } </style>
-<table style="width:50%">
+<style> #customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+} </style>
+<table id="customers">
     <caption><b>Produkty</b></caption>
         <tr>
             <th>Kod</th><th>Nazwa</th><th>Kategoria</th><th>Opis</th><th>Cena sprzedaży</th><th>Ilość na magazynie</th>
@@ -9,3 +30,5 @@
             <td>{{ product.description }}</td><td>{{ product.last_price.price_for_sale }} zł</td><td>{{ product.quantity }}</td>
         </tr>{% endfor %}
 </table><br>
+
+<a href="/warehouse">Powrót</a>

@@ -1,4 +1,27 @@
-<style> td, th, caption { border: 1px solid black; } </style>
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
 <span style="font-size:100px;">Dodaj Kontrahenta</span><br>
 <form method="POST">
     {% csrf_token %}
@@ -6,13 +29,12 @@
     <input type="submit" value="Stwórz">
 </form>
 <span style="font-size:100px;">Lista Kontrahentów</span><br>
-<table style="width:50%">
-    <caption>Kontrahenci</caption>
+<table id="customers">
         <tr>
-            <th>Nazwa</th><th>Kontakt</th><th>Typ</th><th>Dług</th>
+            <th>Nazwa</th><th>Kontakt</th><th>Typ</th>
         </tr>
         <tr>{% for cont in contractors %}
-            <td><a href="/contractor/{{ cont.id }}">{{ cont.name }}</a></td><td>{{ cont.contact }}</td><td>{{ cont.get_type_display }}</td><td>{{ cont.debt }}zł</td>
+            <td><a href="/contractor/{{ cont.id }}">{{ cont.name }}</a></td><td>{{ cont.contact }}</td><td>{{ cont.get_type_display }}</td>
         </tr>{% endfor %}
 </table>
 <a href="/" style="font-size: 20px;">Powrót</a><br>
