@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views import View
+from django.db.models import Q
 from FPP.forms import CategoryForm, ContractorForm, ProductsForm, EditProductsForm, SaleContractorChooseForm, \
     SaleProductChooseForm, CategoryChoiseFieldForm
 from django.http import HttpResponseRedirect
@@ -24,6 +25,11 @@ class WarehouseView(View):
         except EmptyPage:
             products = paginator.page(paginator.num_pages)
         return render(request, "warehouse.html", {"products": products})
+
+    def post(self, request):
+        search = request.POST.get('search')
+        products_list = Product.objects.filter(Q(name__icontains=search) | Q(code__icontains=search))
+        return render(request, 'product_search.html', {"products_list": products_list})
 
 
 class CreateCategoryView(View):

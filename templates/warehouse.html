@@ -8,7 +8,11 @@
             <td><a href="/products/{{ prod.id }}">{{ prod.code }}</a></td><td>{{ prod.name }}</td><td>{{ prod.category.category }}</td>
             <td>{{ prod.description }}</td><td>{{ prod.last_price.price_for_sale }} zł</td><td>{{ prod.quantity }}</td>
         </tr>{% endfor %}
-</table>
+</table><br>
+<form action="", method="post">{% csrf_token %}
+  <input type="text" name="search">
+  <input type="submit" value="Szukaj">
+</form><br>
 <a href="/addproduct" style="font-size: 20px;">Dodaj produkt</a><br>
 <br>
 <a href="/"style="font-size: 20px;">Powrót</a><br>
