@@ -28,7 +28,7 @@ urlpatterns = [
     # path('warehouse/category/<int:id>'),        # wyświetanie wszystkch produktów danej kategorii
     path('products/<int:id>', EditProductCreatorView.as_view()),
     path('sale/', SaleView.as_view()),
-    # path('sale/<int:id>'),                     # szczegoły dostawy
+    # path('sale/<int:id>'),                      # szczegoły dostawy
     # path('delivery/'),                          # wszystkie dostawy
     # path('delivery/<int:id>'),                  # szczegóły dostawy
     path('contractors/', ContractorsCreate.as_view()),

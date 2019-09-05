@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
-from FPP.forms import CategoryForm, ContractorForm, ProductsForm, EditProductsForm, SaleForm
-from django.http import HttpResponseRedirect
+from FPP.forms import CategoryForm, ContractorForm, ProductsForm, EditProductsForm, SaleContractorChooseForm, SaleProductChooseForm
+from django.http import HttpResponseRedirect, HttpResponse
 from FPP.models import Category, Contractor, Product, ProductHistory
 
 
@@ -129,5 +129,17 @@ class EditProductCreatorView(View):
 
 class SaleView(View):
     def get(self, request):
-        form = SaleForm()
-        return render(request, "sale.html", {"form":form})
+        contractors = Contractor.objects.all()
+        form = SaleContractorChooseForm()
+        return render(request, "sale.html", {"form":form,
+                                             "contractors":contractors})
+
+
+    def post(self, request):
+        form = SaleContractorChooseForm(request.POST)
+        form_product = SaleProductChooseForm()
+        if form.is_valid():
+            contractor = form.cleaned_data['contractor']
+            products = Product.objects.order_by('code')
+            return render(request, "sale_product.html", {"form_product":form_product,
+                                                         "products":products})
