@@ -9,6 +9,13 @@ class LandingPageView(View):
     def get(self, request):
         return render(request, "landing_page.html")
 
+
+class WarehouseView(View):
+    def get(self, request):
+        products = Product.objects.order_by('code')
+        return render(request, "warehouse.html", {"products": products})
+
+
 class CreateCategoryView(View):
     def get(self, request):
         category = Category.objects.all()
@@ -80,13 +87,10 @@ class EditContractorView(View):
 
 class ProductCreatorView(View):
     def get(self, request):
-        products = Product.objects.order_by('code')
         form = ProductsForm()
-        return render(request, "warehouse.html", {"form":form,
-                                                    "products":products})
+        return render(request, "add_product.html", {"form":form})
 
     def post(self, request):
-        products = Product.objects.all()
         form = ProductsForm(request.POST)
         if form.is_valid():
             new_product = Product.objects.create(code=form.cleaned_data['code'],
@@ -100,8 +104,8 @@ class ProductCreatorView(View):
             new_product.save()                                  # się w trzeciej tabeli i wyświetla na stronie
             return HttpResponseRedirect("/products")
         else:
-            return render(request, "warehouse.html", {"form": form,
-                                                        "products": products})
+            return render(request, "add_product.html", {"form": form})
+
 
 class EditProductCreatorView(View):
     def get(self, request, id):

@@ -16,14 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from FPP.views import CreateCategoryView, EditCategoryView, ContractorsCreate, EditContractorView, ProductCreatorView, \
-    EditProductCreatorView, LandingPageView
+    EditProductCreatorView, LandingPageView, WarehouseView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', LandingPageView.as_view()),
     path('category/', CreateCategoryView.as_view()),
     path('category/<int:id>', EditCategoryView.as_view()),
-    path('products/', ProductCreatorView.as_view()),
+    path('addproduct/', ProductCreatorView.as_view()),
+    path('warehouse/', WarehouseView.as_view()),
     # path('warehouse/category/<int:id>'),        # wyświetanie wszystkch produktów danej kategorii
     path('products/<int:id>', EditProductCreatorView.as_view()),
     # path('sales/'),                             # wszystkie sprzedaże
