@@ -13,3 +13,18 @@
             <td><a href="/contractor/{{ cont.id }}">{{ cont.name }}</a></td><td>{{ cont.contact }}</td><td>{{ cont.get_type_display }}</td><td>{{ cont.debt }}zł</td>
         </tr>{% endfor %}
 </table>
+        {% if contractors.has_other_pages %}
+            {% if contractors.has_previous %}
+                <a href="?page={{ contractors.previous_page_number }}">< poprzednia</a>
+            {% endif %}
+            {% for i in contractors.paginator.page_range %}
+                {% if contractors.number == i %}
+                    <span>|  {{ i }}  |</span>
+                {% else %}
+                    <a href="?page={{ i }}">|  {{ i }}  |</a>
+                {% endif %}
+            {% endfor %}
+            {% if contractors.has_next %}
+                <a href="?page={{ contractors.next_page_number }}">następna ></a>
+            {% endif %}
+        {% endif %}

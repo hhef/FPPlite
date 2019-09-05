@@ -3,6 +3,7 @@ from django.views import View
 from FPP.forms import CategoryForm, ContractorForm, ProductsForm, EditProductsForm, SaleContractorChooseForm, SaleProductChooseForm
 from django.http import HttpResponseRedirect, HttpResponse
 from FPP.models import Category, Contractor, Product, ProductHistory
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 class LandingPageView(View):
@@ -12,7 +13,15 @@ class LandingPageView(View):
 
 class WarehouseView(View):
     def get(self, request):
-        products = Product.objects.order_by('code')
+        products_list = Product.objects.order_by('code')
+        paginator = Paginator(products_list, 5)
+        page = request.GET.get("page", 1)
+        try:
+            products = paginator.page(page)
+        except PageNotAnInteger:
+            products = paginator.page(1)
+        except EmptyPage:
+            products = paginator.page(paginator.num_pages)
         return render(request, "warehouse.html", {"products": products})
 
 
@@ -51,8 +60,16 @@ class EditCategoryView(View):
 
 class ContractorsCreate(View):
     def get(self, request):
-        contractors = Contractor.objects.order_by('name')
+        contractors_list = Contractor.objects.order_by('name')
         form = ContractorForm()
+        paginator = Paginator(contractors_list, 5)
+        page = request.GET.get("page", 1)
+        try:
+            contractors = paginator.page(page)
+        except PageNotAnInteger:
+            contractors = paginator.page(1)
+        except EmptyPage:
+            contractors = paginator.page(paginator.num_pages)
         return render(request, "contractors.html", {"form":form,
                                                     "contractors":contractors})
 
