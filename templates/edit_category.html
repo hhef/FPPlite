@@ -1,5 +1,16 @@
+<style> td, th, caption { border: 1px solid black; } </style>
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Zmień">
 </form>
+<table style="width:50%">
+    <caption><b>Produkty</b></caption>
+        <tr>
+            <th>Kod</th><th>Nazwa</th><th>Kategoria</th><th>Opis</th><th>Cena sprzedaży</th><th>Ilość na magazynie</th>
+        </tr>
+        <tr>{% for prod in products %}
+            <td><a href="/products/{{ prod.id }}">{{ prod.code }}</a></td><td>{{ prod.name }}</td><td>{{ prod.category.category }}</td>
+            <td>{{ prod.description }}</td><td>{{ prod.last_price.price_for_sale }} zł</td><td>{{ prod.quantity }}</td>
+        </tr>{% endfor %}
+</table>

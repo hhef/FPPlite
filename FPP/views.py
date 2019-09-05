@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.views import View
-from FPP.forms import CategoryForm, ContractorForm, ProductsForm, EditProductsForm, SaleContractorChooseForm, SaleProductChooseForm
-from django.http import HttpResponseRedirect, HttpResponse
+from FPP.forms import CategoryForm, ContractorForm, ProductsForm, EditProductsForm, SaleContractorChooseForm, \
+    SaleProductChooseForm, CategoryChoiseFieldForm
+from django.http import HttpResponseRedirect
 from FPP.models import Category, Contractor, Product, ProductHistory
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -44,8 +45,10 @@ class CreateCategoryView(View):
 class EditCategoryView(View):
     def get(self, request, id):
         category = Category.objects.get(pk=id)
+        products = Product.objects.filter(category=id)
         form = CategoryForm(instance=category)
-        return render(request, "edit_category.html", {"form":form})
+        return render(request, "edit_category.html", {"form":form,
+                                                      "products":products})
 
     def post(self,request, id):
         form = CategoryForm(request.POST)
@@ -121,7 +124,7 @@ class ProductCreatorView(View):
                                                       price_for_sale=form.cleaned_data['price_for_sale'])
             new_product.price_for_sale.add(new_price)           # łączymy nowy produkt z nową ceną zakupu. Wszytko łączy
             new_product.save()                                  # się w trzeciej tabeli i wyświetla na stronie
-            return HttpResponseRedirect("/products")
+            return HttpResponseRedirect("/warehouse")
         else:
             return render(request, "add_product.html", {"form": form})
 

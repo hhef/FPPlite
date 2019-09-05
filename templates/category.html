@@ -1,10 +1,11 @@
-Istniejące kategorie:<br>
+<span style="font-size: 30px"> Istniejące kategorie:</span><br>
 {% for cat in category %}
     <a href="/category/{{ cat.id }}">{{ cat.category }}</a><br>
 {% endfor %}
-
+<span style="font-size: 30px"> Dodaj kategorie:</span><br>
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Stwórz">
 </form>
+<a href="/">Powrót</a><br>
