@@ -28,3 +28,10 @@ class EditProductsForm(forms.ModelForm):
     class Meta:
         model = Product
         exclude = ['price_for_sale']
+
+
+class SaleForm(forms.Form):
+    contractor = forms.ModelChoiceField(queryset=Contractor.objects.order_by('name'))
+    product = forms.ModelChoiceField(queryset=Product.objects.order_by('code'))
+    quantity = forms.IntegerField()
+    price = forms.CharField()
