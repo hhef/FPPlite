@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from FPP.views import CreateCategoryView, EditCategoryView, ContractorsCreate, EditContractorView, ProductCreatorView, \
-    EditProductCreatorView, LandingPageView, WarehouseView
+    EditProductCreatorView, LandingPageView, WarehouseView, SaleView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,8 +27,8 @@ urlpatterns = [
     path('warehouse/', WarehouseView.as_view()),
     # path('warehouse/category/<int:id>'),        # wyświetanie wszystkch produktów danej kategorii
     path('products/<int:id>', EditProductCreatorView.as_view()),
-    # path('sales/'),                             # wszystkie sprzedaże
-    # path('sales/<int:id>'),                     # szczegoły dostawy
+    path('sale/', SaleView.as_view()),
+    # path('sale/<int:id>'),                     # szczegoły dostawy
     # path('delivery/'),                          # wszystkie dostawy
     # path('delivery/<int:id>'),                  # szczegóły dostawy
     path('contractors/', ContractorsCreate.as_view()),

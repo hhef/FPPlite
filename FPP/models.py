@@ -29,6 +29,9 @@ class Product(models.Model):
     def last_price(self):
         return self.price_for_sale.last()
 
+    def __str__(self):
+        return f"{self.code}, {self.name}"
+
 
 class OrderDetail(models.Model):
     product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
@@ -41,7 +44,6 @@ class Order(models.Model):
     date = models.DateField()
     contractor = models.ManyToManyField('Contractor')
     details = models.ForeignKey(OrderDetail, on_delete=models.DO_NOTHING)
-    amount = models.FloatField()
 
 
 class Contractor(models.Model):
@@ -49,6 +51,9 @@ class Contractor(models.Model):
     name = models.CharField(max_length=256)
     contact = models.TextField()
     debt = models.FloatField()
+
+    def __str__(self):
+        return self.name
 
 
 class ProductHistory(models.Model):

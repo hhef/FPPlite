@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from FPP.forms import CategoryForm, ContractorForm, ProductsForm, EditProductsForm
+from FPP.forms import CategoryForm, ContractorForm, ProductsForm, EditProductsForm, SaleForm
 from django.http import HttpResponseRedirect
 from FPP.models import Category, Contractor, Product, ProductHistory
 
@@ -34,7 +34,8 @@ class CreateCategoryView(View):
 
 class EditCategoryView(View):
     def get(self, request, id):
-        form = CategoryForm()
+        category = Category.objects.get(pk=id)
+        form = CategoryForm(instance=category)
         return render(request, "edit_category.html", {"form":form})
 
     def post(self,request, id):
@@ -68,7 +69,8 @@ class ContractorsCreate(View):
 
 class EditContractorView(View):
     def get(self, request, id):
-        form = ContractorForm()
+        contractor = Contractor.objects.get(pk=id)
+        form = ContractorForm(instance=contractor)
         return render(request, "edit_contractor.html", {"form":form})
 
     def post(self,request, id):
@@ -109,7 +111,8 @@ class ProductCreatorView(View):
 
 class EditProductCreatorView(View):
     def get(self, request, id):
-        form = EditProductsForm()
+        product = Product.objects.get(pk=id)
+        form = EditProductsForm(instance=product)
         return render(request, "edit_product.html", {"form":form})
 
     def post(self, request, id):
@@ -123,3 +126,8 @@ class EditProductCreatorView(View):
             edited_product.category = form.cleaned_data['category']
             edited_product.save()
             return HttpResponseRedirect("/products")
+
+class SaleView(View):
+    def get(self, request):
+        form = SaleForm()
+        return render(request, "sale.html", {"form":form})
