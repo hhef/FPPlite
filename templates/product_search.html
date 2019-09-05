@@ -20,21 +20,15 @@
   background-color: #4CAF50;
   color: white;
 } </style>
-
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Zmień">
-</form>
 <table id="customers">
     <caption><b>Produkty</b></caption>
         <tr>
             <th>Kod</th><th>Nazwa</th><th>Kategoria</th><th>Opis</th><th>Cena sprzedaży</th><th>Ilość na magazynie</th>
         </tr>
-        <tr>{% for prod in products %}
-            <td><a href="/products/{{ prod.id }}">{{ prod.code }}</a></td><td>{{ prod.name }}</td><td>{{ prod.category.category }}</td>
-            <td>{{ prod.description }}</td><td>{{ prod.last_price.price_for_sale }} zł</td><td>{{ prod.quantity }}</td>
+        <tr>{% for product in products_list %}
+            <td><a href="/products/{{ product.id }}">{{ product.code }}</a></td><td>{{ product.name }}</td><td>{{ product.category.category }}</td>
+            <td>{{ product.description }}</td><td>{{ product.last_price.price_for_sale }} zł</td><td>{{ product.quantity }}</td>
         </tr>{% endfor %}
-</table>
-<br>
-<a href="/category">Powrót</a>
+</table><br>
+
+<a href="/warehouse">Powrót</a>
