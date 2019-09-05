@@ -9,3 +9,19 @@
             <td>{{ prod.description }}</td><td>{{ prod.last_price.price_for_sale }} zł</td><td>{{ prod.quantity }}</td>
         </tr>{% endfor %}
 </table>
+
+        {% if products.has_other_pages %}
+            {% if products.has_previous %}
+                <a href="?page={{ products.previous_page_number }}">< poprzednia</a>
+            {% endif %}
+            {% for i in products.paginator.page_range %}
+                {% if products.number == i %}
+                    <span>|  {{ i }}  |</span>
+                {% else %}
+                    <a href="?page={{ i }}">|  {{ i }}  |</a>
+                {% endif %}
+            {% endfor %}
+            {% if products.has_next %}
+                <a href="?page={{ products.next_page_number }}">następna ></a>
+            {% endif %}
+        {% endif %}

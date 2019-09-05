@@ -30,8 +30,10 @@ class EditProductsForm(forms.ModelForm):
         exclude = ['price_for_sale']
 
 
-class SaleForm(forms.Form):
-    contractor = forms.ModelChoiceField(queryset=Contractor.objects.order_by('name'))
-    product = forms.ModelChoiceField(queryset=Product.objects.order_by('code'))
-    quantity = forms.IntegerField()
-    price = forms.CharField()
+class SaleContractorChooseForm(forms.Form):
+    contractor = forms.ModelChoiceField(queryset=Contractor.objects.order_by('name'), label="Wybierz Kontrahenta")
+
+
+class SaleProductChooseForm(forms.Form):
+    product = forms.ModelChoiceField(queryset=Product.objects.order_by('code'), label="Wybierz Produkt")
+    quantity = forms.IntegerField(label="Ilość")

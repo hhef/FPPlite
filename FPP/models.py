@@ -30,7 +30,7 @@ class Product(models.Model):
         return self.price_for_sale.last()
 
     def __str__(self):
-        return f"{self.code}, {self.name}"
+        return f"Kod: {self.code}, Produkt: {self.name}"
 
 
 class OrderDetail(models.Model):
@@ -59,6 +59,7 @@ class Contractor(models.Model):
 class ProductHistory(models.Model):
     price_for_sale = models.FloatField()
     purchase_price = models.FloatField()
+
 
 
 # Można zrobić cenę w produkcie stałą, i z historii ceny foreign key do ceny aktualnej. Jeżeli cena aktualnie jest różna
