@@ -153,13 +153,13 @@ class EditProductCreatorView(View):
             edited_product.save()
             return HttpResponseRedirect("/products")
 
+
 class SaleView(View):
     def get(self, request):
         contractors = Contractor.objects.all()
         form = SaleContractorChooseForm()
         return render(request, "sale.html", {"form":form,
                                              "contractors":contractors})
-
 
     def post(self, request):
         form = SaleContractorChooseForm(request.POST)
@@ -169,3 +169,8 @@ class SaleView(View):
             products = Product.objects.order_by('code')
             return render(request, "sale_product.html", {"form_product":form_product,
                                                          "products":products})
+
+
+class DeliveryView(View):
+    def get(self, request):
+        return render(request, "delivery.html")
