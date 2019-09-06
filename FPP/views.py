@@ -151,7 +151,7 @@ class EditProductCreatorView(View):
             edited_product.description = form.cleaned_data['description']
             edited_product.category = form.cleaned_data['category']
             edited_product.save()
-            return HttpResponseRedirect("/products")
+            return HttpResponseRedirect("/warehouse")
 
 
 class SaleView(View):
