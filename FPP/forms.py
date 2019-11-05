@@ -38,5 +38,6 @@ class SaleProductChooseForm(forms.Form):
     product = forms.ModelChoiceField(queryset=Product.objects.order_by('code'), label="Wybierz Produkt")
     quantity = forms.IntegerField(label="Ilość")
 
+
 class CategoryChoiseFieldForm(forms.Form):
     category = forms.ModelChoiceField(queryset=Category.objects.all(), label="Wybierz Kategorię")

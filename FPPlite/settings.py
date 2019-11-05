@@ -74,11 +74,8 @@ WSGI_APPLICATION = 'FPPlite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'HOST': '127.0.0.1',
-        'PASSWORD': 'coderslab',
-        'USER': 'postgres',
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'FPP',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

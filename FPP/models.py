@@ -17,6 +17,7 @@ class Category(models.Model):
     def __str__(self):
         return self.category
 
+
 class Product(models.Model):
     code = models.CharField(max_length=12)
     name = models.CharField(max_length=256)
@@ -50,7 +51,7 @@ class Contractor(models.Model):
     type = models.FloatField(choices=CONTRACTORTYPE)
     name = models.CharField(max_length=256)
     contact = models.TextField()
-    debt = models.FloatField()
+    debt = models.FloatField(default=0)
 
     def __str__(self):
         return self.name
@@ -59,8 +60,6 @@ class Contractor(models.Model):
 class ProductHistory(models.Model):
     price_for_sale = models.FloatField()
     purchase_price = models.FloatField()
-
-
 
 # Można zrobić cenę w produkcie stałą, i z historii ceny foreign key do ceny aktualnej. Jeżeli cena aktualnie jest różna
 # się updateuje, a jeżeli nie to zostaje. Przy dostawie cena zostanie wrzucona do historii cen
