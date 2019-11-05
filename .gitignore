@@ -1,12 +1,8 @@
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 .idea/
-FPP/__init__.py
-FPP/migrations/
-FPPlite/__init__.py
 FPPlite/__pycache__/
 FPP/__pycache__/
-FPPlite/settings.py
 
 # User-specific stuff
 .idea/**/workspace.xml
