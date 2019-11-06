@@ -1,6 +1,6 @@
 """This script will fill data base with a superuser, 10 categories, 10 contractors and 50 products. Superuser username
 will be 'admin' and password will be 'password'. Run this script after migrations if you are using other database
-than in this project.
+than this in this project.
 """
 
 import os
